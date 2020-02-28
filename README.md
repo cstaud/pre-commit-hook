@@ -16,5 +16,6 @@ git pre-commit hook.
 docker.
 
 ## next
+fault tolerance in self-update routine.
 more languages.
 run only on new files.
