@@ -4,6 +4,7 @@ self_update() {
   SELF_UPDATE="$1"
   if [ "$SELF_UPDATE" == false ]; then return; fi
 
+  SELF="$0"
   REMOTE_SCRIPT="https://raw.githubusercontent.com/cstaud/pre-commit-hook/master/pre-commit"
 
   echo "Checking for self-update ..."
