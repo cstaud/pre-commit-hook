@@ -1,6 +1,9 @@
 #!/bin/bash
 
 self_update() {
+  SELF_UPDATE="$1"
+  if [ "$SELF_UPDATE" == false ]; then return; fi
+
   REPO_URL="https://raw.githubusercontent.com/cstaud/pre-commit-hook/master"
   SELF="$0"
   REMOTE_SCRIPT="$REPO_URL/$SELF"
@@ -25,7 +28,7 @@ self_update() {
 }
 
 go_fmt() {
-  docker run --rm -v "$ROOT_DIR":/app golang:1:14 go fmt
+  docker run --rm -v "$ROOT_DIR":/app -w /app golang:1.14 go fmt
 }
 
 java_format() {
@@ -42,5 +45,5 @@ ROOT_DIR="$(git rev-parse --show-toplevel)"
 [[ -d "${ROOT_DIR}" ]] || exit 1
 
 
-self_update
+self_update false
 main
