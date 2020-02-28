@@ -28,15 +28,29 @@ self_update() {
 }
 
 go_fmt() {
-  docker run --rm -v "$ROOT_DIR":/app -w /app golang:1.14 go fmt
+  go_fmt_diff=$(docker run --rm -v "$ROOT_DIR":/app -w /app golang:1.14 gofmt -l .)
+  if [ -z "$go_fmt_diff" ]; then
+    echo "Your go code looks nice."
+  else
+    echo "Dude!? Format your go code:"
+    echo "$go_fmt_diff"
+    exit 1
+  fi
 }
 
 java_format() {
-  docker run --rm -v "$ROOT_DIR":/src openjdk:alpine sh -c "wget https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar && find /src -name '*.java' | xargs java -jar google-java-format-1.6-all-deps.jar"
+  java_format_diff=$(docker run --rm -v "$ROOT_DIR":/src openjdk:alpine sh -c "wget --quiet https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar && find /src -name '*.java' | xargs java -jar google-java-format-1.6-all-deps.jar -n")
+  if [ -z "$java_format_diff" ]; then
+    echo "Your java code looks ... ok, its still java ;-)"
+  else
+    echo "Dude!? Your java code hurt my eyes!"
+    echo "$java_format_diff"
+    exit 1
+  fi
 }
 
 main() {
-  echo "Running v0"
+  echo "Startet pre-commit hook"
   go_fmt
   java_format
 }
