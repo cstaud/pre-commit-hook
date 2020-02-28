@@ -22,7 +22,7 @@ self_update() {
       exit 1
     fi
     echo "Done. Quitting deprecated version now."
-    exit 0
+    exit 1
   fi
 }
 
