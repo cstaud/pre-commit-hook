@@ -11,6 +11,10 @@ support for multiple languages.
 no requirements for native tools.
 
 ## how
-bash. 
+self-updating bash script. 
 git pre-commit hook.
 docker.
+
+## next
+more languages.
+run only on new files.
