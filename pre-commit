@@ -4,9 +4,7 @@ self_update() {
   SELF_UPDATE="$1"
   if [ "$SELF_UPDATE" == false ]; then return; fi
 
-  REPO_URL="https://raw.githubusercontent.com/cstaud/pre-commit-hook/master"
-  SELF="$0"
-  REMOTE_SCRIPT="$REPO_URL/$SELF"
+  REMOTE_SCRIPT="https://raw.githubusercontent.com/cstaud/pre-commit-hook/master/pre-commit"
 
   echo "Checking for self-update ..."
   diff=$(diff "$SELF" <(curl -s "$REMOTE_SCRIPT"))
