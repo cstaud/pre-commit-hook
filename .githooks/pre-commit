@@ -32,7 +32,7 @@ go_fmt() {
 }
 
 java_format() {
-  docker run -it --rm -v "$ROOT_DIR":/src openjdk:alpine sh -c "wget https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar && find /src -name '*.java' | xargs java -jar google-java-format-1.6-all-deps.jar"
+  docker run --rm -v "$ROOT_DIR":/src openjdk:alpine sh -c "wget https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar && find /src -name '*.java' | xargs java -jar google-java-format-1.6-all-deps.jar"
 }
 
 main() {
