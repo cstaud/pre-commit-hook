@@ -49,7 +49,7 @@ java_format() {
 }
 
 main() {
-  echo "Startet pre-commit hook"
+  echo "Start pre-commit hook"
   go_fmt
   java_format
 }
