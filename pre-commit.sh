@@ -1,7 +1,7 @@
 #!/bin/bash
 
 self_update() {
-  REPO_URL="https://raw.githubusercontent.com/cstaud/bash_self-update/master"
+  REPO_URL="https://raw.githubusercontent.com/cstaud/pre-commit-hook/master"
   SELF="$0"
   REMOTE_SCRIPT="$REPO_URL/$SELF"
 
@@ -35,6 +35,7 @@ java_format() {
 main() {
   echo "Running v0"
   go_fmt
+  java_format
 }
 
 ROOT_DIR="$(git rev-parse --show-toplevel)"
